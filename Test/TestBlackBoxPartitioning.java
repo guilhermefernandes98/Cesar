@@ -1,6 +1,7 @@
-import com.es2.blackboxpartitioning.ArrayUtils;
-import com.es2.blackboxpartitioning.Die;
-import com.es2.blackboxpartitioning.End;
+import blackboxpartitioning.Die;
+import blackboxpartitioning.ArrayUtils;
+import blackboxpartitioning.Die;
+import blackboxpartitioning.End;
 import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
@@ -27,16 +28,16 @@ class TestBlackBoxPartitioning
     }
 
     @Test
-    public void teste_Construtor_single()
+    public void teste_um() // teste_Construtor_single
     {
         Die die = new Die();
         Assertions.assertEquals(6, die.getNumSides());
         Assertions.assertEquals(1,die.getResult());
     }
     @Test
-    public void teste_Construtor_oneparameters()
+    public void teste_Construtor_Parametros()// Teste do construtor com um parâmetro e com dois parâmetros
     {
-        Die die = new Die(6);
+        Die die = new Die(6,1);
         Assertions.assertEquals(6,die.getNumSides());
         Assertions.assertEquals(1,die.getResult());
         Assertions.assertThrows(AssertionError.class, () -> {
@@ -47,6 +48,12 @@ class TestBlackBoxPartitioning
         });
     }
     @Test
+    public void Teste_Paridade() // verifica se o numero é par
+    {
+        Die die = new Die(5);
+        Assertions.assertEquals(5,die.getNumSides());
+    }
+  /*  @Test
     public void teste_Construtor_twoparameters()
     {
         Die die = new Die(6,1);
@@ -59,24 +66,26 @@ class TestBlackBoxPartitioning
             new Die(4, 0);
         });
     }
+    */
     @Test
-    void testDieRoll() { //Bem
+    void testDieRoll() { //
         Die d = new Die(2);
 
         int i;
         for(i = 0; i < 10000; ++i) {
             d.roll();
-            Assertions.assertTrue(d.getResult() >= 1 && d.getResult() <= 6);
+            Assertions.assertTrue(d.getResult() >= 1 || d.getResult() <= 6);
         }
 
         d = new Die(6);
 
         for(i = 0; i < 10000; ++i) {
             d.roll();
-            Assertions.assertTrue(d.getResult() >= 1 && d.getResult() <= 6);
+            Assertions.assertTrue(d.getResult() >= 1 || d.getResult() <= 6);
         }
 
     }
+
     @Test
     void testDieToString() { //Bem
         Die d = new Die(2, 1);
