@@ -1,6 +1,7 @@
 import com.es2.blackboxpartitioning.ArrayUtils;
 import com.es2.blackboxpartitioning.Die;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.util.Date;
@@ -26,20 +27,21 @@ class TestBlackBoxPartitioning {
         System.setOut(new PrintStream(outContent));
     }
 
-    @Test
+    @Test //secret catcher -> corrigido
     void teste1dado1()
     {
-       new Die(7);
+       Die d = new Die(7);
+        Assertions.assertEquals(7,d.getNumSides());
     }
 
-    @Test
+    @Test // free ride -> coloquei a segunda linha em comentário porque teriamos dois testes
     void teste2dado1()
     {
         assertThrows(AssertionError.class, () -> new Die(0));
-        assertThrows(AssertionError.class, () -> new Die(0,0));
+        //assertThrows(AssertionError.class, () -> new Die(0,0));
     }
 
-    @Test
+    @Test // enumerator -> TesteConstrutor
     void teste1dado2()
     {
         assertThrows(AssertionError.class, () -> new Die(0,0));
@@ -68,14 +70,14 @@ class TestBlackBoxPartitioning {
         }
     }
 
-    @Test
+    @Test // Loudmouth-> pôr em comentário o que não importa
     void teste1findmin()
     {
         int[] Lista = null;
         assertThrows(AssertionError.class, () -> ArrayUtils.findMin(Lista));
         System.out.println("teste error not found");
-        Date data = new Date();
-        System.out.println("Tempo: " + data);
+     //   Date data = new Date();
+      //  System.out.println("Tempo: " + data);
     }
 
     @Test
